@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="20dp"
+    tools:context=".EditProfileActivity">
+
+    <ImageView
+        android:id="@+id/imageViewEditProfile"
+        android:layout_width="180dp"
+        android:layout_height="135dp"
+        android:padding="4dp" />
+
+    <EditText
+        android:id="@+id/editTextFirstNameEditProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="30dp"
+        android:layout_toRightOf="@id/imageViewEditProfile"
+        android:text="Marko"
+        android:textColor="#000000"
+        android:textSize="24dp"
+        android:hint="@string/first_name"/>
+
+    <EditText
+        android:id="@+id/editTextLastNameEditProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="1dp"
+        android:layout_toRightOf="@id/imageViewEditProfile"
+        android:layout_below="@id/editTextFirstNameEditProfile"
+        android:text="Markovic"
+        android:textColor="#000000"
+        android:textSize="24dp"
+        android:hint="@string/last_name" />
+
+    <EditText
+        android:id="@+id/editTextAddressEditProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageViewEditProfile"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:text="Cara Dusana 10"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        android:hint="@string/address" />
+
+    <EditText
+        android:id="@+id/editTextPhoneNumberEditProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextAddressEditProfile"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:text="061/123-456"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        android:hint="@string/phone_number"/>
+
+    <EditText
+        android:id="@+id/editTextTypesEditProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextPhoneNumberEditProfile"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorPrimary"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="Electrician"
+        android:textAlignment="center"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small.Inverse"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:orientation="horizontal">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/buttonSaveEditProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_check_white_24dp" />
+
+    </LinearLayout>
+</RelativeLayout>

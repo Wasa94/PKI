@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="5dp">
+
+    <EditText
+        android:id="@+id/textViewFirstNameWorkerFilter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="@string/first_name"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/textViewLastNameWorkerFilter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:hint="@string/last_name"
+        android:inputType="text" />
+
+    <com.dv183222m.pki.MultiSelectionSpinner
+        android:id="@+id/typesSpinnerWorkerFilter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:stretchColumns="1">
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:layout_marginRight="5dp"
+                android:gravity="center"
+                android:text="Rating:" />
+
+            <com.jaygoo.widget.RangeSeekBar
+                android:id="@+id/rangeSeekBarRatingWorkerFilter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:paddingRight="10dp"
+                app:rsb_max="5"
+                app:rsb_min="0"
+                app:rsb_mode="range"
+                app:rsb_progress_color="@color/colorAccent"
+                app:rsb_range_interval="0"
+                app:rsb_thumb_scale_ratio="1.2"
+                app:rsb_tick_mark_mode="number"
+                app:rsb_tick_mark_text_array="@array/rating_array"
+                app:rsb_tick_mark_text_size="12dp" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="5dp"
+                android:text="Experience:" />
+
+            <com.jaygoo.widget.RangeSeekBar
+                android:id="@+id/rangeSeekBarExperienceWorkerFilter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:paddingRight="10dp"
+                app:rsb_max="20"
+                app:rsb_min="0"
+                app:rsb_mode="range"
+                app:rsb_progress_color="@color/colorAccent"
+                app:rsb_range_interval="0"
+                app:rsb_thumb_scale_ratio="1.2"
+                app:rsb_tick_mark_mode="number"
+                app:rsb_tick_mark_text_array="@array/exp_array"
+                app:rsb_tick_mark_text_size="12dp" />
+        </TableRow>
+    </TableLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="*">
+
+        <TableRow>
+
+            <Button
+                android:id="@+id/buttonFilterWorkerFilter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Filter" />
+
+            <Button
+                android:id="@+id/buttonClearWorkerFilter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Clear" />
+        </TableRow>
+    </TableLayout>
+</LinearLayout>

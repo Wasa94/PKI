@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    tools:context=".WorkerDetailsActivity">
+
+    <ImageView
+        android:id="@+id/imageViewWorker"
+        android:layout_width="180dp"
+        android:layout_height="135dp"
+        android:padding="4dp" />
+
+    <TextView
+        android:id="@+id/textViewFirstNameWorker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="30dp"
+        android:layout_toRightOf="@id/imageViewWorker"
+        android:text="Marko"
+        android:textColor="#000000"
+        android:textSize="24dp" />
+
+
+    <TextView
+        android:id="@+id/textViewLastNameWorker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewFirstNameWorker"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@id/imageViewWorker"
+        android:text="Markovic"
+        android:textColor="#000000"
+        android:textSize="24dp" />
+
+    <TextView
+        android:id="@+id/textViewAddressWorker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageViewWorker"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:text="Cara Dusana 10"
+        android:textColor="#000000"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/textViewPhoneNumberWorker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewAddressWorker"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:text="061/123-456"
+        android:textColor="#000000"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/textViewTypesWorker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewPhoneNumberWorker"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorPrimary"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="Electrician"
+        android:textAlignment="center"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small.Inverse"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textViewExpWorker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewTypesWorker"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:gravity="end"
+        android:text="4 years of experience"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+
+    <RatingBar
+        android:id="@+id/ratingBarWorker"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewExpWorker"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:numStars="5"
+        android:stepSize="0.1" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/buttonCreateRequestWorker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_add_white_24dp"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+</RelativeLayout>

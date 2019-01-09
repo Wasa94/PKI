@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">PKI</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="log_in">LOG IN</string>
+    <string name="sign_up"><u>Sign up</u></string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="type">Type</string>
+    <string-array name="types_array">
+        <item>Client</item>
+        <item>Worker</item>
+    </string-array>
+    <string name="address">Address</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="register">REGISTER</string>
+    <string-array name="rating_array">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+    <string-array name="exp_array">
+        <item>0</item>
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+    </string-array>
+    <string-array name="worker_types_array">
+        <item>Electrician</item>
+        <item>Plumber</item>
+        <item>Carpenter</item>
+    </string-array>
+    <string-array name="price_array">
+        <item>0</item>
+        <item>5000</item>
+        <item>10000</item>
+        <item>15000</item>
+        <item>20000</item>
+    </string-array>
+</resources>

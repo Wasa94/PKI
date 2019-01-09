@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_workers"
+            android:icon="@drawable/ic_account_circle_black_24dp"
+            android:title="Workers"
+            android:checkable="false"
+            android:visible="false" />
+        <item
+            android:id="@+id/nav_requests"
+            android:icon="@drawable/ic_warning_black_24dp"
+            android:title="Requests"
+            android:checkable="false"
+            android:visible="false" />
+        <item
+            android:id="@+id/nav_edit_profile"
+            android:icon="@drawable/ic_edit_black_24dp"
+            android:title="Edit Profile"
+            android:checkable="false" />
+        <item
+            android:id="@+id/nav_change_pass"
+            android:icon="@drawable/ic_vpn_key_black_24dp"
+            android:title="Change Password"
+            android:checkable="false" />
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_power_settings_new_black_24dp"
+            android:title="Log out"
+            android:checkable="false" />
+    </group>
+</menu>
