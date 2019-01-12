@@ -24,7 +24,9 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".RequestsActivity" />
         <activity android:name=".RequestActivity" />
-        <activity android:name=".EditProfileActivity"></activity>
+        <activity android:name=".EditProfileActivity" />
+        <activity android:name=".CreateRequestActivity" />
+        <activity android:name=".CreditCardActivity"></activity>
     </application>
 
 </manifest>

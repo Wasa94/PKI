@@ -17,6 +17,8 @@ import org.w3c.dom.Text;
 
 public class WorkerDetailsActivity extends AppCompatActivity {
 
+    String user;
+    String workerUsername;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,10 +28,10 @@ public class WorkerDetailsActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        String username = intent.getStringExtra("Worker");
-        User worker = DbContext.INSTANCE.getUser(username);
+        workerUsername = intent.getStringExtra("Worker");
+        User worker = DbContext.INSTANCE.getUser(workerUsername);
 
-        String user = intent.getStringExtra("User");
+        user = intent.getStringExtra("User");
         if(user != null && !user.isEmpty()) {
             FloatingActionButton buttonCreateRequest = findViewById(R.id.buttonCreateRequestWorker);
             buttonCreateRequest.show();
@@ -67,5 +69,12 @@ public class WorkerDetailsActivity extends AppCompatActivity {
 
         RatingBar ratingBar = findViewById(R.id.ratingBarWorker);
         ratingBar.setRating(worker.getWorker().getRating());
+    }
+
+    public void createRequest(View view) {
+        Intent intent = new Intent(this, CreateRequestActivity.class);
+        intent.putExtra("User", user);
+        intent.putExtra("Worker", workerUsername);
+        startActivity(intent);
     }
 }

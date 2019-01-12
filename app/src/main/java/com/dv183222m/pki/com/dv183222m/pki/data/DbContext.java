@@ -87,19 +87,19 @@ public class DbContext {
         Calendar to = Calendar.getInstance();
         from.set(2018, Calendar.NOVEMBER, 15);
         to.set(2018, Calendar.NOVEMBER, 15);
-        Request request = new Request(users.get("Vasa"), users.get("Zika"), from.getTime(), to.getTime(), WorkerType.Plumber, 5000, "Pukla cev.");
+        Request request = new Request(users.get("Vasa"), users.get("Zika"), "Zemun", "Nikole Tesle 1", from.getTime(), to.getTime(), WorkerType.Plumber, false,5000, "Pukla cev.");
         request.setStatus(RequestStatus.New);
         requests.put(request.getId(), request);
 
         from.set(2018, Calendar.DECEMBER, 10);
         to.set(2018, Calendar.DECEMBER, 10);
-        request = new Request(users.get("Vasa"), users.get("Mare"), from.getTime(), to.getTime(), WorkerType.Electrician, 2000, "Ne radi bojler.");
+        request = new Request(users.get("Vasa"), users.get("Mare"), "Zemun", "Nikole Tesle 1", from.getTime(), to.getTime(), WorkerType.Electrician, true,2000, "Ne radi bojler.");
         request.setStatus(RequestStatus.Unsuccessful);
         requests.put(request.getId(), request);
 
         from.set(2018, Calendar.DECEMBER, 28);
         to.set(2018, Calendar.DECEMBER, 30);
-        request = new Request(users.get("Vasa"), users.get("Mare"), from.getTime(), to.getTime(), WorkerType.Electrician, 6000, "Promena instalacija.");
+        request = new Request(users.get("Vasa"), users.get("Mare"), "Zemun", "Nikole Tesle 1", from.getTime(), to.getTime(), WorkerType.Electrician, false,6000, "Promena instalacija.");
         request.setStatus(RequestStatus.Successful);
         requests.put(request.getId(), request);
     }
@@ -187,5 +187,18 @@ public class DbContext {
         }
 
         return workers;
+    }
+
+    private Map<Integer, Request> newRequests = new HashMap<>();
+    public void createRequest(Request request) {
+        newRequests.put(request.getId(), request);
+    }
+
+    public void submitRequest(int id) {
+        Request request = newRequests.get(id);
+        if(request != null) {
+            requests.put(id, request);
+            newRequests.remove(id);
+        };
     }
 }

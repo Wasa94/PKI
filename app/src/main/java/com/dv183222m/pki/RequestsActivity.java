@@ -233,7 +233,7 @@ public class RequestsActivity extends AppCompatActivity {
     private void initSpinners(View view) {
 
         MultiSelectionSpinner statusSpinner = view.findViewById(R.id.spinnerStatusRequestsFilter);
-        ArrayAdapter<RequestStatus> adapterRequestStatus = new ArrayAdapter<RequestStatus>(RequestsActivity.this, android.R.layout.simple_spinner_item, RequestStatus.values());
+        ArrayAdapter<RequestStatus> adapterRequestStatus = new ArrayAdapter<RequestStatus>(RequestsActivity.this, R.layout.spinner_item, RequestStatus.values());
 
         ArrayList<String> list = new ArrayList<>();
         for (int i = 0; i < adapterRequestStatus.getCount(); i++)

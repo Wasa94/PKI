@@ -14,11 +14,14 @@ public class Request {
     private RequestStatus status;
     private WorkerType type;
     private int price;
+    private boolean creditCard;
     private String details;
     private int rating;
     private String review;
+    private String municipality;
+    private String address;
 
-    public Request(User client, User worker, Date from, Date to, WorkerType type, int price, String details) {
+    public Request(User client, User worker, String municipality, String address, Date from, Date to, WorkerType type, boolean creditCard, int price, String details) {
         this.client = client;
         this.worker = worker;
         this.from = from;
@@ -26,10 +29,37 @@ public class Request {
         this.type = type;
         this.price = price;
         this.details = details;
+        this.creditCard = creditCard;
+        this.municipality = municipality;
+        this.address = address;
 
         this.status = RequestStatus.New;
         this.rating = 0;
         this.review = "";
+    }
+
+    public String getMunicipality() {
+        return municipality;
+    }
+
+    public void setMunicipality(String municipality) {
+        this.municipality = municipality;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public boolean isCreditCard() {
+        return creditCard;
+    }
+
+    public void setCreditCard(boolean creditCard) {
+        this.creditCard = creditCard;
     }
 
     public int getId() {

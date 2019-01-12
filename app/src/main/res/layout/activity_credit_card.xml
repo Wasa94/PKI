@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="30sp"
+    android:layout_marginTop="30sp"
+    android:layout_marginRight="30sp"
+    android:orientation="vertical"
+    tools:context=".CreditCardActivity">
+
+    <EditText
+        android:id="@+id/editTextCardNumberCreditCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10sp"
+        android:hint="Card Number"
+        android:inputType="text" />
+
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:stretchColumns="1">
+
+        <TableRow>
+
+            <Button
+                android:id="@+id/buttonDateCreditCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Expiration" />
+
+            <TextView
+                android:id="@+id/textViewDateCreditCard"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="01.01.2019." />
+        </TableRow>
+    </TableLayout>
+
+    <EditText
+        android:id="@+id/editTextCVVCreditCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10sp"
+        android:hint="CVV"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/editTextHolderNameCreditCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10sp"
+        android:hint="Holder Name"
+        android:inputType="text" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10sp"
+        android:onClick="createRequest"
+        android:text="Create" />
+
+</LinearLayout>

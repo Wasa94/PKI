@@ -109,7 +109,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_add_white_24dp"
-            android:visibility="gone"/>
+            android:visibility="gone"
+            android:onClick="createRequest"/>
 
     </LinearLayout>
 </RelativeLayout>
