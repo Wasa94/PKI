@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.dv183222m.pki.com.dv183222m.pki.data.DbContext;
@@ -35,6 +36,11 @@ public class EditProfileActivity extends AppCompatActivity {
 
         final EditText editTextPhoneNumber = findViewById(R.id.editTextPhoneNumberEditProfile);
         editTextPhoneNumber.setText(user.getPhoneNumber());
+
+        ImageView imageView = findViewById(R.id.imageViewEditProfile);
+        if (user.getImage() != 0) {
+            imageView.setImageDrawable(getApplicationContext().getResources().getDrawable(user.getImage(), null));
+        }
 
         FloatingActionButton buttonSave = findViewById(R.id.buttonSaveEditProfile);
         buttonSave.setOnClickListener(new View.OnClickListener() {

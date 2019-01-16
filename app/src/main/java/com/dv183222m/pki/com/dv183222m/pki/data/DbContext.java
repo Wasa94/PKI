@@ -144,6 +144,10 @@ public class DbContext {
         return requestsTmp;
     }
 
+    public Request getRequest(int id) {
+        return requests.get(id);
+    }
+
     public User getUser(String username) {
         User user = users.get(username);
 
@@ -200,5 +204,16 @@ public class DbContext {
             requests.put(id, request);
             newRequests.remove(id);
         };
+    }
+
+    public boolean cancelRequest(int id) {
+        Request request = requests.get(id);
+        if(request != null && request.getStatus() == RequestStatus.New) {
+            requests.remove(id);
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }

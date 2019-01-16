@@ -16,10 +16,10 @@ public class Request {
     private int price;
     private boolean creditCard;
     private String details;
-    private int rating;
     private String review;
     private String municipality;
     private String address;
+    private float rating;
 
     public Request(User client, User worker, String municipality, String address, Date from, Date to, WorkerType type, boolean creditCard, int price, String details) {
         this.client = client;
@@ -34,7 +34,7 @@ public class Request {
         this.address = address;
 
         this.status = RequestStatus.New;
-        this.rating = 0;
+        this.rating = 0f;
         this.review = "";
     }
 
@@ -130,11 +130,11 @@ public class Request {
         this.details = details;
     }
 
-    public int getRating() {
+    public float getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(float rating) {
         this.rating = rating;
     }
 

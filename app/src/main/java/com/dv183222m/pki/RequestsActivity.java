@@ -74,6 +74,7 @@ public class RequestsActivity extends AppCompatActivity {
     public void requestDetails(int id) {
         Intent intent = new Intent(this, RequestActivity.class);
         intent.putExtra("Request", id);
+        intent.putExtra("Username", username);
         startActivity(intent);
     }
 
