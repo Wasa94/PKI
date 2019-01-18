@@ -48,25 +48,25 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void login(View view) {
-        EditText usernameEditText = findViewById(R.id.usernameEditText);
-        EditText passwordEditText = findViewById(R.id.passwordEditText);
+        EditText editTextUsername = findViewById(R.id.editTextUsernameLogin);
+        EditText editTextPassword = findViewById(R.id.editTextPasswordLogin);
 
-        if (usernameEditText.getText().toString().isEmpty()
-                || passwordEditText.getText().toString().isEmpty()) {
+        if (editTextUsername.getText().toString().isEmpty()
+                || editTextPassword.getText().toString().isEmpty()) {
             Toast.makeText(getApplicationContext(),
                     "Please enter username and password.",
                     Toast.LENGTH_LONG).show();
             return;
         }
 
-        User user = DbContext.INSTANCE.getUser(usernameEditText.getText().toString());
+        User user = DbContext.INSTANCE.getUser(editTextUsername.getText().toString());
 
         if (user == null) {
             Toast.makeText(getApplicationContext(),
-                    "\"" + usernameEditText.getText().toString()
+                    "\"" + editTextUsername.getText().toString()
                             + "\" is not associated with any account.",
                     Toast.LENGTH_LONG).show();
-        } else if (user.getPassword().equals(passwordEditText.getText().toString())) {
+        } else if (user.getPassword().equals(editTextPassword.getText().toString())) {
             Intent intent = new Intent(this, ProfileActivity.class);
             intent.putExtra("Username", user.getUsername());
             startActivity(intent);

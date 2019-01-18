@@ -40,7 +40,7 @@ public class ProfileActivity extends AppCompatActivity {
         actionbar.setTitle("");
         mDrawerLayout = findViewById(R.id.drawer_layout);
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.navViewProfile);
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
@@ -111,6 +111,9 @@ public class ProfileActivity extends AppCompatActivity {
             RatingBar ratingBar = findViewById(R.id.ratingBarProfile);
             ratingBar.setRating(user.getWorker().getRating());
             ratingBar.setVisibility(View.VISIBLE);
+
+            navigationView.getMenu().findItem(R.id.nav_requests_map).setVisible(true);
+            navigationView.getMenu().findItem(R.id.nav_requests_worker).setVisible(true);
         }
         else {
             navigationView.getMenu().findItem(R.id.nav_workers).setVisible(true);

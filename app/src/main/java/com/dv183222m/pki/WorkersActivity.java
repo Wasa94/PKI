@@ -31,7 +31,7 @@ public class WorkersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workers);
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        RecyclerView recyclerView = findViewById(R.id.recyclerViewWorkers);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -148,7 +148,7 @@ public class WorkersActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                RecyclerView recyclerView = findViewById(R.id.recyclerView);
+                RecyclerView recyclerView = findViewById(R.id.recyclerViewWorkers);
                 recyclerView.setHasFixedSize(true);
                 recyclerView.setLayoutManager(new LinearLayoutManager(WorkersActivity.this));
 
@@ -177,7 +177,7 @@ public class WorkersActivity extends AppCompatActivity {
         buttonClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RecyclerView recyclerView = findViewById(R.id.recyclerView);
+                RecyclerView recyclerView = findViewById(R.id.recyclerViewWorkers);
                 recyclerView.setHasFixedSize(true);
                 recyclerView.setLayoutManager(new LinearLayoutManager(WorkersActivity.this));
 

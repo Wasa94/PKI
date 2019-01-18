@@ -10,7 +10,7 @@
     tools:context=".RegisterActivity">
 
     <EditText
-        android:id="@+id/firstNameEditText"
+        android:id="@+id/editTextFirstNameRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10sp"
@@ -18,7 +18,7 @@
         android:inputType="text" />
 
     <EditText
-        android:id="@+id/lastNameEditText"
+        android:id="@+id/editTextLastNameRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10sp"
@@ -26,14 +26,14 @@
         android:inputType="text" />
 
     <Spinner
-        android:id="@+id/typesSpinner"
+        android:id="@+id/spinnerTypeRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10sp"
         android:hint="@string/type" />
 
     <EditText
-        android:id="@+id/addressEditText"
+        android:id="@+id/editTextAddressRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10sp"
@@ -41,7 +41,7 @@
         android:inputType="text" />
 
     <EditText
-        android:id="@+id/phoneNumberEditText"
+        android:id="@+id/editTextPhoneNumberRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10sp"
@@ -49,7 +49,7 @@
         android:inputType="text" />
 
     <EditText
-        android:id="@+id/usernameEditText"
+        android:id="@+id/editTextUsernameRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10sp"
@@ -57,7 +57,7 @@
         android:inputType="text" />
 
     <EditText
-        android:id="@+id/passwordEditText"
+        android:id="@+id/editTextPasswordRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10sp"

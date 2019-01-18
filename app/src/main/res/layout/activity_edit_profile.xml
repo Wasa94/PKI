@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="20dp"
     tools:context=".EditProfileActivity">
 
@@ -20,23 +20,23 @@
         android:layout_marginLeft="5dp"
         android:layout_marginTop="30dp"
         android:layout_toRightOf="@id/imageViewEditProfile"
+        android:hint="@string/first_name"
         android:text="Marko"
         android:textColor="#000000"
-        android:textSize="24dp"
-        android:hint="@string/first_name"/>
+        android:textSize="24dp" />
 
     <EditText
         android:id="@+id/editTextLastNameEditProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/editTextFirstNameEditProfile"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="1dp"
         android:layout_toRightOf="@id/imageViewEditProfile"
-        android:layout_below="@id/editTextFirstNameEditProfile"
+        android:hint="@string/last_name"
         android:text="Markovic"
         android:textColor="#000000"
-        android:textSize="24dp"
-        android:hint="@string/last_name" />
+        android:textSize="24dp" />
 
     <EditText
         android:id="@+id/editTextAddressEditProfile"
@@ -45,10 +45,10 @@
         android:layout_below="@id/imageViewEditProfile"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="10dp"
+        android:hint="@string/address"
         android:text="Cara Dusana 10"
         android:textColor="#000000"
-        android:textSize="20dp"
-        android:hint="@string/address" />
+        android:textSize="20dp" />
 
     <EditText
         android:id="@+id/editTextPhoneNumberEditProfile"
@@ -57,33 +57,24 @@
         android:layout_below="@id/editTextAddressEditProfile"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="10dp"
+        android:hint="@string/phone_number"
         android:text="061/123-456"
         android:textColor="#000000"
-        android:textSize="20dp"
-        android:hint="@string/phone_number"/>
+        android:textSize="20dp" />
 
-    <EditText
-        android:id="@+id/editTextTypesEditProfile"
+    <com.dv183222m.pki.MultiSelectionSpinner
+        android:id="@+id/spinnerTypesEditProfile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/editTextPhoneNumberEditProfile"
-        android:layout_marginLeft="5dp"
         android:layout_marginTop="20dp"
-        android:background="@color/colorPrimary"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:text="Electrician"
-        android:textAlignment="center"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small.Inverse"
-        android:textSize="20dp"
-        android:textStyle="bold"
         android:visibility="gone" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
         android:orientation="horizontal">
 
         <android.support.design.widget.FloatingActionButton

@@ -80,7 +80,7 @@ public class RequestActivity extends AppCompatActivity {
         }
 
         CardView cardViewReview = findViewById(R.id.cardViewReviewRequestDetails);
-        Button buttonCancelRequest = findViewById(R.id.buttonCancelRequest);
+        Button buttonCancelRequest = findViewById(R.id.buttonCancelRequestDetails);
 
         if(request.getStatus() == RequestStatus.New) {
             buttonCancelRequest.setVisibility(View.VISIBLE);
@@ -91,7 +91,7 @@ public class RequestActivity extends AppCompatActivity {
 
     public void shareRequest(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(RequestActivity.this);
-        viewDialogShare = getLayoutInflater().inflate(R.layout.share_dialog, null);
+        viewDialogShare = getLayoutInflater().inflate(R.layout.dialog_share, null);
 
         builder.setView(viewDialogShare);
         dialogShare = builder.create();
@@ -121,7 +121,7 @@ public class RequestActivity extends AppCompatActivity {
         }
 
         AlertDialog.Builder builder = new AlertDialog.Builder(RequestActivity.this);
-        viewDialogReview = getLayoutInflater().inflate(R.layout.review_dialog, null);
+        viewDialogReview = getLayoutInflater().inflate(R.layout.dialog_review, null);
 
         builder.setView(viewDialogReview);
         dialogReview = builder.create();

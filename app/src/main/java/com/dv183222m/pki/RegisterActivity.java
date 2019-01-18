@@ -26,28 +26,28 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void initTypes() {
-        Spinner typesSpinner = findViewById(R.id.typesSpinner);
+        Spinner spinnerType = findViewById(R.id.spinnerTypeRegister);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.types_array, R.layout.spinner_item);
-        typesSpinner.setAdapter(adapter);
+        spinnerType.setAdapter(adapter);
     }
 
     public void register(View view) {
-        EditText firstNameEditText = findViewById(R.id.firstNameEditText);
-        EditText lastNameEditText = findViewById(R.id.lastNameEditText);
-        Spinner typesSpinner = findViewById(R.id.typesSpinner);
-        EditText addressEditText = findViewById(R.id.addressEditText);
-        EditText phoneNumberEditText = findViewById(R.id.phoneNumberEditText);
-        EditText usernameEditText = findViewById(R.id.usernameEditText);
-        EditText passwordEditText = findViewById(R.id.passwordEditText);
+        EditText editTextFirstName = findViewById(R.id.editTextFirstNameRegister);
+        EditText editTextLastName = findViewById(R.id.editTextLastNameRegister);
+        Spinner spinnerType = findViewById(R.id.spinnerTypeRegister);
+        EditText editTextAddress = findViewById(R.id.editTextAddressRegister);
+        EditText editTextPhoneNumber = findViewById(R.id.editTextPhoneNumberRegister);
+        EditText editTextUsername = findViewById(R.id.editTextUsernameRegister);
+        EditText editTextPassword = findViewById(R.id.editTextPasswordRegister);
 
-        if (usernameEditText.getText().toString().isEmpty()
-                || passwordEditText.getText().toString().isEmpty()
-                || firstNameEditText.getText().toString().isEmpty()
-                || lastNameEditText.getText().toString().isEmpty()
-                || addressEditText.getText().toString().isEmpty()
-                || phoneNumberEditText.getText().toString().isEmpty()
-                || typesSpinner.getSelectedItem().toString().isEmpty()) {
+        if (editTextUsername.getText().toString().isEmpty()
+                || editTextPassword.getText().toString().isEmpty()
+                || editTextFirstName.getText().toString().isEmpty()
+                || editTextLastName.getText().toString().isEmpty()
+                || editTextAddress.getText().toString().isEmpty()
+                || editTextPhoneNumber.getText().toString().isEmpty()
+                || spinnerType.getSelectedItem().toString().isEmpty()) {
             Toast.makeText(getApplicationContext(),
                     "All data is required.",
                     Toast.LENGTH_LONG).show();
@@ -55,12 +55,12 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
 
-        User user = new User(firstNameEditText.getText().toString(),
-                lastNameEditText.getText().toString(),
-                UserType.valueOf(typesSpinner.getSelectedItem().toString()),
-                addressEditText.getText().toString(),
-                phoneNumberEditText.getText().toString(), usernameEditText.getText().toString(),
-                passwordEditText.getText().toString());
+        User user = new User(editTextFirstName.getText().toString(),
+                editTextLastName.getText().toString(),
+                UserType.valueOf(spinnerType.getSelectedItem().toString()),
+                editTextAddress.getText().toString(),
+                editTextPhoneNumber.getText().toString(), editTextUsername.getText().toString(),
+                editTextPassword.getText().toString());
 
         boolean result = DbContext.INSTANCE.addUser(user);
 
