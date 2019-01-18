@@ -45,4 +45,5 @@
         <item>Credit card</item>
         <item>Cash</item>
     </string-array>
+    <string name="title_activity_requests_map">Map</string>
 </resources>

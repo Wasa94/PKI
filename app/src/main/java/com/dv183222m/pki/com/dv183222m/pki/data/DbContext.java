@@ -30,7 +30,7 @@ public class DbContext {
     private void initWorkers() {
         Worker worker;
 
-        users.put("Mare", new User("Marko", "Markovic", UserType.Worker, "Cara Dusana 10", "061/123-456", "Mare", "mare123"));
+        users.put("Mare", new User("Marko", "Markovic", UserType.Worker, "Strugarska, Belgrade", "061/123-456", "Mare", "mare123"));
         worker = users.get("Mare").getWorker();
         worker.setExperience(4);
         worker.setRating(4.5f);
@@ -93,14 +93,14 @@ public class DbContext {
 
         from.set(2018, Calendar.DECEMBER, 10);
         to.set(2018, Calendar.DECEMBER, 10);
-        request = new Request(users.get("Vasa"), users.get("Mare"), "Zemun", "Nikole Tesle 1", from.getTime(), to.getTime(), WorkerType.Electrician, true,2000, "Ne radi bojler.");
-        request.setStatus(RequestStatus.Unsuccessful);
+        request = new Request(users.get("Vasa"), users.get("Mare"), "Čukarica", "Požeška", from.getTime(), to.getTime(), WorkerType.Electrician, true,2000, "Ne radi bojler.");
+        request.setStatus(RequestStatus.Ongoing);
         requests.put(request.getId(), request);
 
         from.set(2018, Calendar.DECEMBER, 28);
         to.set(2018, Calendar.DECEMBER, 30);
-        request = new Request(users.get("Vasa"), users.get("Mare"), "Zemun", "Nikole Tesle 1", from.getTime(), to.getTime(), WorkerType.Electrician, false,6000, "Promena instalacija.");
-        request.setStatus(RequestStatus.Successful);
+        request = new Request(users.get("Vasa"), users.get("Mare"), "Čukarica", "Mladena Mitrića", from.getTime(), to.getTime(), WorkerType.Electrician, false,6000, "Promena instalacija.");
+        request.setStatus(RequestStatus.Ongoing);
         requests.put(request.getId(), request);
     }
 
@@ -215,5 +215,17 @@ public class DbContext {
         else {
             return false;
         }
+    }
+
+    public List<Request> getActiveRequests(String workerUsername) {
+        List<Request> results = new ArrayList<>();
+
+        for (Request request: requests.values()) {
+            if(request.getWorker().getUsername().equals(workerUsername) && request.getStatus().equals(RequestStatus.Ongoing)) {
+                results.add(request);
+            }
+        }
+
+        return  results;
     }
 }
