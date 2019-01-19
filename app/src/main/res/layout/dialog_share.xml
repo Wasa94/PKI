@@ -32,7 +32,6 @@
         <android.support.design.widget.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
             android:onClick="submitShareRequest"
             android:src="@drawable/ic_instagram"
             app:maxImageSize="32dp" />
@@ -48,6 +47,7 @@
         <android.support.design.widget.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
             android:onClick="submitShareRequest"
             android:src="@drawable/ic_twitter"
             app:maxImageSize="32dp" />
@@ -64,7 +64,6 @@
         <android.support.design.widget.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
             android:onClick="submitShareRequest"
             android:src="@drawable/ic_linkedin"
             app:maxImageSize="32dp" />
