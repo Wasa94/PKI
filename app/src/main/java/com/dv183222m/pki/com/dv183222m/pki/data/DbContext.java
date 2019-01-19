@@ -93,7 +93,7 @@ public class DbContext {
 
         from.set(2018, Calendar.DECEMBER, 10);
         to.set(2018, Calendar.DECEMBER, 10);
-        request = new Request(users.get("Vasa"), users.get("Mare"), "Čukarica", "Požeška", from.getTime(), to.getTime(), WorkerType.Electrician, true,2000, "Ne radi bojler.");
+        request = new Request(users.get("Vasa"), users.get("Mare"), "Čukarica", "Požeška 55", from.getTime(), to.getTime(), WorkerType.Electrician, true,2000, "Ne radi bojler.");
         request.setStatus(RequestStatus.Ongoing);
         requests.put(request.getId(), request);
 
@@ -101,6 +101,12 @@ public class DbContext {
         to.set(2018, Calendar.DECEMBER, 30);
         request = new Request(users.get("Vasa"), users.get("Mare"), "Čukarica", "Mladena Mitrića", from.getTime(), to.getTime(), WorkerType.Electrician, false,6000, "Promena instalacija.");
         request.setStatus(RequestStatus.Ongoing);
+        requests.put(request.getId(), request);
+
+        from.set(2018, Calendar.JANUARY, 28);
+        to.set(2018, Calendar.JANUARY, 30);
+        request = new Request(users.get("Vasa"), users.get("Mare"), "Čukarica", "Strugarska 4", from.getTime(), to.getTime(), WorkerType.Electrician, false,6000, "Promena instalacija.");
+        request.setStatus(RequestStatus.New);
         requests.put(request.getId(), request);
     }
 
@@ -137,6 +143,22 @@ public class DbContext {
 
         for(Request request: requests.values()) {
             if(request.getWorker() != null && request.getWorker().getUsername().equals(username)) {
+                requestsTmp.add(request);
+            }
+        }
+
+        return requestsTmp;
+    }
+
+    public List<Request> getRequestsWorker(String username, String clientName, List<WorkerType> types, List<RequestStatus> statuses,
+                                           int priceMin, int priceMax, Date dateFrom, Date dateTo) {
+        List<Request> requestsTmp = new ArrayList<>();
+
+        for(Request request: requests.values()) {
+            if(request.getWorker() != null && request.getWorker().getUsername().equals(username) && request.getClient().getFullName().contains(clientName)
+                    && request.getPrice() >= priceMin && request.getPrice() <= priceMax
+                    && request.getFrom().after(dateFrom) && request.getTo().before(dateTo)
+                    && statuses.contains(request.getStatus()) && types.contains(WorkerType.getType(request.getType()))) {
                 requestsTmp.add(request);
             }
         }

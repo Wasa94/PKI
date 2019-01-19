@@ -22,7 +22,7 @@ import com.jaygoo.widget.RangeSeekBar;
 
 import java.util.*;
 
-public class RequestsActivity extends AppCompatActivity {
+public class RequestsWorkerActivity extends AppCompatActivity {
 
     private String username;
     private Date dateFrom, dateTo;
@@ -30,22 +30,22 @@ public class RequestsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_requests);
+        setContentView(R.layout.activity_requests_worker);
 
         Intent intent = getIntent();
         final String username = intent.getStringExtra("Username");
         this.username = username;
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerViewRequests);
+        RecyclerView recyclerView = findViewById(R.id.recyclerViewRequestsWorker);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        RequestAdapter adapter = new RequestAdapter(this, DbContext.INSTANCE.getRequestsClient(username), new RequestAdapter.OnItemClickListener() {
+        RequestAdapter adapter = new RequestAdapter(this, DbContext.INSTANCE.getRequestsWorker(username), new RequestAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Request item) {
                 requestDetails(item.getId());
             }
-        }, false);
+        }, true);
 
         recyclerView.setAdapter(adapter);
 
@@ -72,14 +72,14 @@ public class RequestsActivity extends AppCompatActivity {
     }
 
     public void requestDetails(int id) {
-        Intent intent = new Intent(this, RequestActivity.class);
+        Intent intent = new Intent(this, RequestWorkerActivity.class);
         intent.putExtra("Request", id);
         intent.putExtra("Username", username);
         startActivity(intent);
     }
 
     private void showFilter() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(RequestsActivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(RequestsWorkerActivity.this);
         View view = getLayoutInflater().inflate(R.layout.dialog_filter_requests, null);
 
         initDatePickers(view);
@@ -110,7 +110,9 @@ public class RequestsActivity extends AppCompatActivity {
         final AlertDialog dialog = builder.create();
         dialog.show();
 
-        final TextView textViewWorker = view.findViewById(R.id.textViewWorkerRequestsFilter);
+        final TextView textViewClient = view.findViewById(R.id.textViewWorkerRequestsFilter);
+        textViewClient.setHint("Client");
+
         final MultiSelectionSpinner typeSpinner = view.findViewById(R.id.spinnerTypeRequestsFilter);
         final MultiSelectionSpinner statusSpinner = view.findViewById(R.id.spinnerStatusRequestsFilter);
 
@@ -118,9 +120,9 @@ public class RequestsActivity extends AppCompatActivity {
         buttonFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RecyclerView recyclerView = findViewById(R.id.recyclerViewRequests);
+                RecyclerView recyclerView = findViewById(R.id.recyclerViewRequestsWorker);
                 recyclerView.setHasFixedSize(true);
-                recyclerView.setLayoutManager(new LinearLayoutManager(RequestsActivity.this));
+                recyclerView.setLayoutManager(new LinearLayoutManager(RequestsWorkerActivity.this));
 
                 List<String> types = typeSpinner.getSelectedStrings();
                 List<WorkerType> workTypes = new ArrayList<>();
@@ -134,15 +136,15 @@ public class RequestsActivity extends AppCompatActivity {
                     requestStatuses.add(RequestStatus.valueOf(status));
                 }
 
-                List<Request> requests = DbContext.INSTANCE.getRequestsClient(username, textViewWorker.getText().toString(), workTypes, requestStatuses,
+                List<Request> requests = DbContext.INSTANCE.getRequestsWorker(username, textViewClient.getText().toString(), workTypes, requestStatuses,
                         valuesPrice[0], valuesPrice[1], dateFrom, dateTo);
 
-                RequestAdapter adapter = new RequestAdapter(RequestsActivity.this, requests, new RequestAdapter.OnItemClickListener() {
+                RequestAdapter adapter = new RequestAdapter(RequestsWorkerActivity.this, requests, new RequestAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(Request item) {
                         requestDetails(item.getId());
                     }
-                }, false);
+                }, true);
 
                 recyclerView.setAdapter(adapter);
                 dialog.dismiss();
@@ -153,16 +155,16 @@ public class RequestsActivity extends AppCompatActivity {
         buttonClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RecyclerView recyclerView = findViewById(R.id.recyclerViewRequests);
+                RecyclerView recyclerView = findViewById(R.id.recyclerViewRequestsWorker);
                 recyclerView.setHasFixedSize(true);
-                recyclerView.setLayoutManager(new LinearLayoutManager(RequestsActivity.this));
+                recyclerView.setLayoutManager(new LinearLayoutManager(RequestsWorkerActivity.this));
 
-                RequestAdapter adapter = new RequestAdapter(RequestsActivity.this, DbContext.INSTANCE.getRequestsClient(username), new RequestAdapter.OnItemClickListener() {
+                RequestAdapter adapter = new RequestAdapter(RequestsWorkerActivity.this, DbContext.INSTANCE.getRequestsWorker(username), new RequestAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(Request item) {
                         requestDetails(item.getId());
                     }
-                }, false);
+                }, true);
 
                 recyclerView.setAdapter(adapter);
                 dialog.dismiss();
@@ -194,7 +196,7 @@ public class RequestsActivity extends AppCompatActivity {
                 int month = calendar.get(Calendar.MONTH);
                 int year = calendar.get(Calendar.YEAR);
 
-                DatePickerDialog dpd = new DatePickerDialog(RequestsActivity.this, new DatePickerDialog.OnDateSetListener() {
+                DatePickerDialog dpd = new DatePickerDialog(RequestsWorkerActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         textViewFrom.setText(String.format("%02d", dayOfMonth) + "." + String.format("%02d", month + 1) + "." + year + ".");
@@ -216,7 +218,7 @@ public class RequestsActivity extends AppCompatActivity {
                 int month = calendar.get(Calendar.MONTH);
                 int year = calendar.get(Calendar.YEAR);
 
-                DatePickerDialog dpd = new DatePickerDialog(RequestsActivity.this, new DatePickerDialog.OnDateSetListener() {
+                DatePickerDialog dpd = new DatePickerDialog(RequestsWorkerActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         textViewTo.setText(String.format("%02d", dayOfMonth) + "." + String.format("%02d", month + 1) + "." + year + ".");
@@ -234,7 +236,7 @@ public class RequestsActivity extends AppCompatActivity {
     private void initSpinners(View view) {
 
         MultiSelectionSpinner statusSpinner = view.findViewById(R.id.spinnerStatusRequestsFilter);
-        ArrayAdapter<RequestStatus> adapterRequestStatus = new ArrayAdapter<RequestStatus>(RequestsActivity.this, R.layout.spinner_item, RequestStatus.values());
+        ArrayAdapter<RequestStatus> adapterRequestStatus = new ArrayAdapter<RequestStatus>(RequestsWorkerActivity.this, R.layout.spinner_item, RequestStatus.values());
 
         ArrayList<String> list = new ArrayList<>();
         for (int i = 0; i < adapterRequestStatus.getCount(); i++)
@@ -244,11 +246,12 @@ public class RequestsActivity extends AppCompatActivity {
 
 
         MultiSelectionSpinner typeSpinner = view.findViewById(R.id.spinnerTypeRequestsFilter);
-        WorkerType[] types = WorkerType.values();
+        List<WorkerType> types = DbContext.INSTANCE.getUser(username).getWorker().getTypes();
 
         list = new ArrayList<>();
-        for (int i = 0; i < types.length; i++)
-            list.add(types[i].getWorkType());
+        for (WorkerType type: types) {
+            list.add(type.getWorkType());
+        }
 
         typeSpinner.setItems(list);
     }

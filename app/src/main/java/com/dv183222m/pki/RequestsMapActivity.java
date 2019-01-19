@@ -24,6 +24,7 @@ public class RequestsMapActivity extends FragmentActivity implements OnMapReadyC
 
     private GoogleMap mMap;
     private User user;
+    private Request request;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +37,11 @@ public class RequestsMapActivity extends FragmentActivity implements OnMapReadyC
 
         Intent intent = getIntent();
         String username = intent.getStringExtra("Username");
+        int requestId = intent.getIntExtra("Request", -1);
         user = DbContext.INSTANCE.getUser(username);
+        if(requestId != -1) {
+            request = DbContext.INSTANCE.getRequest(requestId);
+        }
     }
 
 
@@ -60,10 +65,18 @@ public class RequestsMapActivity extends FragmentActivity implements OnMapReadyC
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(address, 10));
         }
 
-        List<Request> requests = DbContext.INSTANCE.getActiveRequests(user.getUsername());
-        for (Request request:requests) {
+        if(request == null) {
+            List<Request> requests = DbContext.INSTANCE.getActiveRequests(user.getUsername());
+            for (Request requestTmp : requests) {
+                LatLng tmp = getLocationFromAddress(this, requestTmp.getAddress() + " " + requestTmp.getMunicipality());
+                if (tmp != null) {
+                    mMap.addMarker(new MarkerOptions().position(tmp).title(requestTmp.getClient().getFullName()));
+                }
+            }
+        }
+        else {
             LatLng tmp = getLocationFromAddress(this, request.getAddress() + " " + request.getMunicipality());
-            if(tmp != null) {
+            if (tmp != null) {
                 mMap.addMarker(new MarkerOptions().position(tmp).title(request.getClient().getFullName()));
             }
         }

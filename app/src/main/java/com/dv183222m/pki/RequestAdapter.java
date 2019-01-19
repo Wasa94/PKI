@@ -23,11 +23,13 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
     private Context mCtx;
     private List<Request> requestsList;
     private final RequestAdapter.OnItemClickListener listener;
+    private boolean isWorker;
 
-    public RequestAdapter(Context mCtx, List<Request> requestsList, RequestAdapter.OnItemClickListener listener) {
+    public RequestAdapter(Context mCtx, List<Request> requestsList, RequestAdapter.OnItemClickListener listener, boolean isWorker) {
         this.mCtx = mCtx;
         this.requestsList = requestsList;
         this.listener = listener;
+        this.isWorker = isWorker;
     }
 
     @NonNull
@@ -44,7 +46,11 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
         Request request = requestsList.get(i);
 
         requestViewHolder.textViewType.setText(request.getType());
-        requestViewHolder.textViewWorker.setText(request.getWorker().getFullName());
+        if(isWorker) {
+            requestViewHolder.textViewWorker.setText(request.getClient().getFullName());
+        } else {
+            requestViewHolder.textViewWorker.setText(request.getWorker().getFullName());
+        }
         DateFormat df = new SimpleDateFormat("dd.MM.yyyy.");
         requestViewHolder.textViewFrom.setText(df.format(request.getFrom()));
         requestViewHolder.textViewTo.setText(df.format(request.getTo()));

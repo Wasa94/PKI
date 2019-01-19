@@ -64,7 +64,8 @@ public class RequestActivity extends AppCompatActivity {
             textViewTo.setText(String.format("%02d", calendar.get(Calendar.DAY_OF_MONTH)) + "." + String.format("%02d", calendar.get(Calendar.MONTH) + 1) + "." + calendar.get(Calendar.YEAR) + ".");
 
             TextView textViewPrice = findViewById(R.id.textViewPriceRequestDetails);
-            textViewPrice.setText(request.getPrice() + " RSD");
+            String cashOrCreditCard = request.isCreditCard() ? "Credit Card" : "Cash";
+            textViewPrice.setText(request.getPrice() + " RSD - " + cashOrCreditCard);
 
             TextView textViewDetails = findViewById(R.id.textViewDetailsRequestDetails);
             textViewDetails.setText(request.getDetails());
@@ -98,7 +99,7 @@ public class RequestActivity extends AppCompatActivity {
         dialogShare.show();
     }
 
-    public void createRequest(View view) {
+    public void submitShareRequest(View view) {
         EditText editTextUsername = viewDialogShare.findViewById(R.id.editTextUsernameShare);
         EditText editTextPassword = viewDialogShare.findViewById(R.id.editTextPasswordShare);
 

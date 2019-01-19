@@ -75,7 +75,11 @@ public class ProfileActivity extends AppCompatActivity {
                                 intent.putExtra("Username", username);
                                 startActivity(intent);
                                 break;
-
+                            case R.id.nav_requests_worker:
+                                intent = new Intent(ProfileActivity.this, RequestsWorkerActivity.class);
+                                intent.putExtra("Username", username);
+                                startActivity(intent);
+                                break;
                         }
 
                         mDrawerLayout.closeDrawers();
