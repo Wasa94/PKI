@@ -91,6 +91,36 @@
         </TableRow>
     </TableLayout>
 
+    <RadioGroup
+        android:id="@+id/radioGroupWorkersFilter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone">
+
+        <RadioButton
+            android:id="@+id/radioButtonAllWorkersFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:onClick="onRadioButtonClicked"
+            android:text="All" />
+
+        <RadioButton
+            android:id="@+id/radioButtonPositiveWorkersFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="Requested Before" />
+
+        <RadioButton
+            android:id="@+id/radioButtonNegativeWorkersFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="Not Requested Before" />
+    </RadioGroup>
+
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

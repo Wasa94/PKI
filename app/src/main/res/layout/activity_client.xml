@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    tools:context=".ClientActivity">
+
+    <ImageView
+        android:id="@+id/imageViewClient"
+        android:layout_width="180dp"
+        android:layout_height="135dp"
+        android:padding="4dp" />
+
+    <TextView
+        android:id="@+id/textViewFirstNameClient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="30dp"
+        android:layout_toRightOf="@id/imageViewClient"
+        android:text="Marko"
+        android:textColor="#000000"
+        android:textSize="24dp" />
+
+    <TextView
+        android:id="@+id/textViewLastNameClient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@id/imageViewClient"
+        android:layout_below="@id/textViewFirstNameClient"
+        android:text="Markovic"
+        android:textColor="#000000"
+        android:textSize="24dp" />
+
+    <TextView
+        android:id="@+id/textViewAddressClient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageViewClient"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:text="Cara Dusana 10"
+        android:textColor="#000000"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/textViewPhoneNumberClient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewAddressClient"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:text="061/123-456"
+        android:textColor="#000000"
+        android:textSize="20dp" />
+
+</RelativeLayout>

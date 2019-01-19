@@ -30,7 +30,8 @@
         android:layout_toRightOf="@id/textViewTypeRequestWorkerDetails"
         android:text="Aleksandar"
         android:textColor="#000000"
-        android:textSize="22dp" />
+        android:textSize="22dp"
+        android:onClick="showClient"/>
 
     <TextView
         android:id="@+id/textViewWorkerLastNameRequestWorkerDetails"
@@ -41,7 +42,8 @@
         android:layout_toRightOf="@id/textViewTypeRequestWorkerDetails"
         android:text="Maksimovic"
         android:textColor="#000000"
-        android:textSize="22dp" />
+        android:textSize="22dp"
+        android:onClick="showClient" />
 
     <TextView
         android:id="@+id/labelFromRequestWorkerDetails"

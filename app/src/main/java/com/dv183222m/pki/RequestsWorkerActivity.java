@@ -25,7 +25,13 @@ import java.util.*;
 public class RequestsWorkerActivity extends AppCompatActivity {
 
     private String username;
-    private Date dateFrom, dateTo;
+
+    private Date dateFromVal = Calendar.getInstance().getTime();
+    private Date dateToVal = Calendar.getInstance().getTime();
+    private String nameVal = "";
+    private List<RequestStatus> statusesVal = new ArrayList<>();
+    private List<WorkerType> workerTypesVal = new ArrayList<>();
+    private int[] priceVal = new int[]{0, 20000};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +92,7 @@ public class RequestsWorkerActivity extends AppCompatActivity {
         initSpinners(view);
 
         RangeSeekBar rangeSeekBarPrice = view.findViewById(R.id.rangeSeekBarPriceRequestsFilter);
-        final int[] valuesPrice = new int[]{0, 5};
+        final int[] valuesPrice = new int[]{priceVal[0], priceVal[1]};
         rangeSeekBarPrice.setOnRangeChangedListener(new OnRangeChangedListener() {
             @Override
             public void onRangeChanged(RangeSeekBar view, float leftValue, float rightValue, boolean isFromUser) {
@@ -104,7 +110,7 @@ public class RequestsWorkerActivity extends AppCompatActivity {
                 //stop tracking touch
             }
         });
-        rangeSeekBarPrice.setValue(rangeSeekBarPrice.getMinProgress(), rangeSeekBarPrice.getMaxProgress());
+        rangeSeekBarPrice.setValue(priceVal[0], priceVal[1]);
 
         builder.setView(view);
         final AlertDialog dialog = builder.create();
@@ -112,6 +118,7 @@ public class RequestsWorkerActivity extends AppCompatActivity {
 
         final TextView textViewClient = view.findViewById(R.id.textViewWorkerRequestsFilter);
         textViewClient.setHint("Client");
+        textViewClient.setText(nameVal);
 
         final MultiSelectionSpinner typeSpinner = view.findViewById(R.id.spinnerTypeRequestsFilter);
         final MultiSelectionSpinner statusSpinner = view.findViewById(R.id.spinnerStatusRequestsFilter);
@@ -137,7 +144,7 @@ public class RequestsWorkerActivity extends AppCompatActivity {
                 }
 
                 List<Request> requests = DbContext.INSTANCE.getRequestsWorker(username, textViewClient.getText().toString(), workTypes, requestStatuses,
-                        valuesPrice[0], valuesPrice[1], dateFrom, dateTo);
+                        valuesPrice[0], valuesPrice[1], dateFromVal, dateToVal);
 
                 RequestAdapter adapter = new RequestAdapter(RequestsWorkerActivity.this, requests, new RequestAdapter.OnItemClickListener() {
                     @Override
@@ -147,6 +154,7 @@ public class RequestsWorkerActivity extends AppCompatActivity {
                 }, true);
 
                 recyclerView.setAdapter(adapter);
+                saveValues(textViewClient.getText().toString(), requestStatuses, workTypes, valuesPrice[0], valuesPrice[1], dateFromVal, dateToVal);
                 dialog.dismiss();
             }
         });
@@ -167,6 +175,7 @@ public class RequestsWorkerActivity extends AppCompatActivity {
                 }, true);
 
                 recyclerView.setAdapter(adapter);
+                clearValues();
                 dialog.dismiss();
             }
         });
@@ -179,19 +188,23 @@ public class RequestsWorkerActivity extends AppCompatActivity {
         Button buttonTo = view.findViewById(R.id.buttonToRequestsFilter);
 
         Calendar calendar = Calendar.getInstance();
+        calendar.setTime(dateFromVal);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
         int month = calendar.get(Calendar.MONTH);
         int year = calendar.get(Calendar.YEAR);
         textViewFrom.setText(String.format("%02d", day) + "." + String.format("%02d", month + 1) + "." + year + ".");
-        textViewTo.setText(String.format("%02d", day) + "." + String.format("%02d", month + 1) + "." + year + ".");
 
-        dateFrom = calendar.getTime();
-        dateTo = calendar.getTime();
+        calendar.setTime(dateToVal);
+        day = calendar.get(Calendar.DAY_OF_MONTH);
+        month = calendar.get(Calendar.MONTH);
+        year = calendar.get(Calendar.YEAR);
+        textViewTo.setText(String.format("%02d", day) + "." + String.format("%02d", month + 1) + "." + year + ".");
 
         buttonFrom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Calendar calendar = Calendar.getInstance();
+                calendar.setTime(dateFromVal);
                 int day = calendar.get(Calendar.DAY_OF_MONTH);
                 int month = calendar.get(Calendar.MONTH);
                 int year = calendar.get(Calendar.YEAR);
@@ -203,7 +216,7 @@ public class RequestsWorkerActivity extends AppCompatActivity {
 
                         Calendar c = Calendar.getInstance();
                         c.set(year, month, dayOfMonth);
-                        dateFrom = c.getTime();
+                        dateFromVal = c.getTime();
                     }
                 }, year, month, day);
                 dpd.show();
@@ -214,6 +227,7 @@ public class RequestsWorkerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Calendar calendar = Calendar.getInstance();
+                calendar.setTime(dateToVal);
                 int day = calendar.get(Calendar.DAY_OF_MONTH);
                 int month = calendar.get(Calendar.MONTH);
                 int year = calendar.get(Calendar.YEAR);
@@ -225,7 +239,7 @@ public class RequestsWorkerActivity extends AppCompatActivity {
 
                         Calendar c = Calendar.getInstance();
                         c.set(year, month, dayOfMonth);
-                        dateTo = c.getTime();
+                        dateToVal = c.getTime();
                     }
                 }, year, month, day);
                 dpd.show();
@@ -244,6 +258,12 @@ public class RequestsWorkerActivity extends AppCompatActivity {
 
         statusSpinner.setItems(list);
 
+        list = new ArrayList<>();
+        for (RequestStatus status: statusesVal) {
+            list.add(status.name());
+        }
+        statusSpinner.setSelection(list);
+
 
         MultiSelectionSpinner typeSpinner = view.findViewById(R.id.spinnerTypeRequestsFilter);
         List<WorkerType> types = DbContext.INSTANCE.getUser(username).getWorker().getTypes();
@@ -254,5 +274,30 @@ public class RequestsWorkerActivity extends AppCompatActivity {
         }
 
         typeSpinner.setItems(list);
+
+        list = new ArrayList<>();
+        for (WorkerType workerType: workerTypesVal) {
+            list.add(workerType.getWorkType());
+        }
+        typeSpinner.setSelection(list);
+    }
+
+    private void saveValues(String workerName, List<RequestStatus> statuses, List<WorkerType> workTypes, int priceMin, int priceMax, Date dateFrom, Date dateTo) {
+        dateFromVal = dateFrom;
+        dateToVal = dateTo;
+        priceVal[0] = priceMin;
+        priceVal[1] = priceMax;
+        workerTypesVal = workTypes;
+        statusesVal = statuses;
+        nameVal = workerName;
+    }
+
+    private void clearValues() {
+        dateFromVal = Calendar.getInstance().getTime();
+        dateToVal = Calendar.getInstance().getTime();
+        nameVal = "";
+        statusesVal = new ArrayList<>();
+        workerTypesVal = new ArrayList<>();
+        priceVal = new int[]{0, 20000};
     }
 }

@@ -103,8 +103,8 @@ public class DbContext {
         request.setStatus(RequestStatus.Ongoing);
         requests.put(request.getId(), request);
 
-        from.set(2018, Calendar.JANUARY, 28);
-        to.set(2018, Calendar.JANUARY, 30);
+        from.set(2019, Calendar.JANUARY, 28);
+        to.set(2019, Calendar.JANUARY, 30);
         request = new Request(users.get("Vasa"), users.get("Mare"), "Čukarica", "Strugarska 4", from.getTime(), to.getTime(), WorkerType.Electrician, false,6000, "Promena instalacija.");
         request.setStatus(RequestStatus.New);
         requests.put(request.getId(), request);
@@ -209,6 +209,39 @@ public class DbContext {
                         && user.getWorker().getExperience() >= minExp && user.getWorker().getExperience() <= maxExp
                         && user.getWorker().getTypes().containsAll(type))
                 workers.add(user.getWorker());
+            }
+        }
+
+        return workers;
+    }
+
+    public List<Worker> getWorkersLogedin(String firstName, String lastName, List<WorkerType> type, float minRating, float maxRating, float minExp, float maxExp, Boolean requestedBefore, String username) {
+        List<Worker> workers = new ArrayList<>();
+
+        for(User user: users.values()) {
+            if(user.getWorker() != null && user.getWorker().getTypes().size() > 0) {
+                if(user.getFirstName().contains(firstName) && user.getLastName().contains(lastName)
+                        && user.getWorker().getRating() >= minRating && user.getWorker().getRating() <= maxRating
+                        && user.getWorker().getExperience() >= minExp && user.getWorker().getExperience() <= maxExp
+                        && user.getWorker().getTypes().containsAll(type)) {
+
+                    if(requestedBefore == null) {
+                        workers.add(user.getWorker());
+                    }
+                    else {
+                        boolean isRequestedBefore = false;
+                        for (Request request : getRequestsClient(username)) {
+                            if (request.getWorker().equals(user)) {
+                                isRequestedBefore = true;
+                                break;
+                            }
+                        }
+
+                        if (isRequestedBefore == requestedBefore) {
+                            workers.add(user.getWorker());
+                        }
+                    }
+                }
             }
         }
 

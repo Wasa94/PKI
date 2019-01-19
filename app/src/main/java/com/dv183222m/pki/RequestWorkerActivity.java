@@ -201,4 +201,10 @@ public class RequestWorkerActivity extends AppCompatActivity {
         intent.putExtra("Username", username);
         startActivity(intent);
     }
+
+    public void showClient(View view) {
+        Intent intent = new Intent(RequestWorkerActivity.this, ClientActivity.class);
+        intent.putExtra("Username", request.getClient().getUsername());
+        startActivity(intent);
+    }
 }
