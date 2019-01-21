@@ -70,7 +70,7 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(getApplicationContext(),
-                    "SUCCESS",
+                    "User created.",
                     Toast.LENGTH_LONG).show();
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
