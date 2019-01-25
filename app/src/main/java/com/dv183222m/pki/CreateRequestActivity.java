@@ -111,7 +111,8 @@ public class CreateRequestActivity extends AppCompatActivity {
         Spinner spinnerType = findViewById(R.id.spinnerTypeCreateRequest);
 
         List<String> types = new ArrayList<>();
-        for (WorkerType workerType : WorkerType.values()) {
+        List<WorkerType> workerTypes = DbContext.INSTANCE.getUser(workerUsername).getWorker().getTypes();
+        for (WorkerType workerType : workerTypes) {
             types.add(workerType.getWorkType());
         }
 
