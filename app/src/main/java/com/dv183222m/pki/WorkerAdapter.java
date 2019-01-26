@@ -45,7 +45,8 @@ public class WorkerAdapter extends RecyclerView.Adapter<WorkerAdapter.WorkerView
         Worker worker = workerList.get(i);
 
         workerViewHolder.textViewName.setText(worker.getUser().getFullName());
-        workerViewHolder.textViewExp.setText(worker.getExperience() + " years of experience");
+        String years = worker.getExperience() == 1 ? " year" : " years";
+        workerViewHolder.textViewExp.setText(worker.getExperience() + years + " of experience");
 
         StringBuilder types = new StringBuilder();
         for (WorkerType type: worker.getTypes()) {

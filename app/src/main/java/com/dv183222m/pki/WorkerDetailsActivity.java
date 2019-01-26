@@ -55,7 +55,8 @@ public class WorkerDetailsActivity extends AppCompatActivity {
         textViewPhoneNumber.setText(worker.getPhoneNumber());
 
         TextView textViewExp = findViewById(R.id.textViewExpWorker);
-        textViewExp.setText(worker.getWorker().getExperience() + " years of experience");
+        String years = worker.getWorker().getExperience() == 1 ? " year" : " years";
+        textViewExp.setText(worker.getWorker().getExperience() + years + " of experience");
 
         TextView textViewTypes = findViewById(R.id.textViewTypesWorker);
         StringBuilder types = new StringBuilder();

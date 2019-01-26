@@ -105,7 +105,8 @@ public class ProfileActivity extends AppCompatActivity {
         if (user.getType().equals(UserType.Worker)) {
 
             TextView textViewExp = findViewById(R.id.textViewExpProfile);
-            textViewExp.setText(user.getWorker().getExperience() + " years of experience");
+            String years = user.getWorker().getExperience() == 1 ? " year" : " years";
+            textViewExp.setText(user.getWorker().getExperience() + years + " of experience");
             textViewExp.setVisibility(View.VISIBLE);
 
             TextView textViewTypes = findViewById(R.id.textViewTypesProfile);
