@@ -181,6 +181,11 @@ public class ProfileActivity extends AppCompatActivity {
                 String newPassword = textViewNewPass.getText().toString();
                 String repeatPassword = textViewRepeatPass.getText().toString();
 
+                if (newPassword.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "New password cannot be empty.", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
                 if (!newPassword.equals(repeatPassword)) {
                     Toast.makeText(getApplicationContext(), "New password doesn't match.", Toast.LENGTH_LONG).show();
                     return;
